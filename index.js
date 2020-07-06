@@ -12,26 +12,14 @@ client.categories = fs.readdirSync("./commands/");
 ["command"].forEach(handler => {
   require(`./handlers/${handler}`)(client);
 });
-client.on("guildMemberAdd", member => {
-  const guild = client.guilds.get("472128849417601036");
-  var memberCount = guild.members.filter(member => !member.user.bot).size;
-  var memberCountChannel = client.channels.get("710145974093348964");
-  memberCountChannel.setName(`${memberCount} members!`);
-});
 
-client.on("guildMemberRemove", member => {
-  const guild = client.guilds.get("472128849417601036");
-  var memberCount = guild.members.filter(member => !member.user.bot).size;
-  var memberCountChannel = client.channels.get("710145974093348964");
-  memberCountChannel.setName(`${memberCount} members!`);
-});
 
 
 client.on("ready", async function() {
   var list = [
     `Use my Prefix ${process.env.PREFIX}`,
     `On ${client.guilds.size} servers `,
-`A Cloud Partner`
+`idk`
   ];
   setInterval(function() {
     const Exec = Math.floor(Math.random() * list.length);
@@ -60,25 +48,7 @@ client.on("message", async message => {
 });
 
 var token = require("dotenv");
-const embed = new RichEmbed();
-client.on("message", message => {
-  if (message.content === process.env.PREFIX + "IP")
-    var x = message.channel
-      .send(`${message.author} your request`)
-      .then(x => {
-        x.react("👍");
-        message.channel.send(
-          `${message.author}`,
-          embed.setTitle("Processed"),
-          embed.setColor("RANDOM"),
-          embed.addField(
-            "Server IP and Port",
-            "<a:NitroBoost728:709614699041259570><a:Fire:514567641449627648>     Server IP=rainbowevents.us.to     \nServer Port=Port: 25565     <a:NitroBoost728:709614699041259570><a:Fire:514567641449627648>"
-          ),
-          embed.setDescription("_________________")
-        );
-      });
-});
+
 
 client.on("guildCreate", guild => {
   setTimeout(function() {
